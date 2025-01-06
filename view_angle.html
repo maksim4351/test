@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Angle Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="test-container">
+        <h1>View Angle Test</h1>
+        <p>Adjust the brightness slider to test the viewing angles of your monitor. Press "Full Screen" for better results.</p>
+        
+        <div class="image-container">
+            <img id="testImage" src="test_image.jpg" alt="Test Image">
+        </div>
+
+        <input id="brightnessSlider" type="range" min="0" max="200" value="100">
+        <p>Brightness: <span id="brightnessValue">100%</span></p>
+
+        <div class="button-group">
+            <button class="btn" id="fullscreenBtn">Full Screen</button>
+            <a href="dashboard.html" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="view_angle.js"></script>
+</body>
+</html>

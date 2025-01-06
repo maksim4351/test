@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="test-container" id="testContainer">
+        <button id="startTest" class="btn">Start Test</button>
+    </div>
+    <script>
+        const colors = ["#FFFFFF", "#0000FF", "#000000", "url('high_resolution_image.jpg')"];
+        let currentIndex = 0;
+        let interval;
+        let isPaused = false;
+
+        const testContainer = document.getElementById("testContainer");
+        const startTestButton = document.getElementById("startTest");
+
+        // Function to change the color or image
+        function changeDisplay(index) {
+            if (colors[index].startsWith("url")) {
+                testContainer.style.background = colors[index];
+                testContainer.style.backgroundSize = "cover";
+                testContainer.style.backgroundPosition = "center";
+            } else {
+                testContainer.style.background = colors[index];
+            }
+        }
+
+        // Start the test
+        startTestButton.addEventListener("click", () => {
+            startTestButton.style.display = "none";
+            testContainer.requestFullscreen();
+
+            changeDisplay(currentIndex);
+
+            interval = setInterval(() => {
+                if (!isPaused) {
+                    currentIndex = (currentIndex + 1) % colors.length;
+                    changeDisplay(currentIndex);
+                }
+            }, 5000); // Change every 10 seconds
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (event) => {
+            if (startTestButton.style.display === "none") {
+                if (event.code === "ArrowRight") {
+                    // Next color
+                    currentIndex = (currentIndex + 1) % colors.length;
+                    changeDisplay(currentIndex);
+                } else if (event.code === "ArrowLeft") {
+                    // Previous color
+                    currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+                    changeDisplay(currentIndex);
+                } else if (event.code === "Space") {
+                    // Pause or resume
+                    isPaused = !isPaused;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

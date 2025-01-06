@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Info</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="info-container">
+        <h1>How to Use This Website</h1>
+        <div class="screen-info">
+            <p><strong>Resolution:</strong> <span id="resolution">Loading...</span></p>
+            <p><strong>Screen Size:</strong> <span id="screenSize">Loading...</span></p>
+        </div>
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <ol>
+                <li>To start a test, choose one from the dashboard.</li>
+                <li>Use the following controls during the tests:
+                    <ul>
+                        <li><strong>Right Arrow (→):</strong> Move to the next screen or pattern.</li>
+                        <li><strong>Left Arrow (←):</strong> Go back to the previous screen or pattern.</li>
+                        <li><strong>Spacebar:</strong> Pause or resume automatic transitions.</li>
+                        <li><strong>Esc:</strong> Exit fullscreen mode.</li>
+                    </ul>
+                </li>
+                <li>Follow the on-screen instructions for each test to ensure accurate results.</li>
+                <li>To return to the main menu, press "Back to Dashboard."</li>
+            </ol>
+        </div>
+        <a href="dashboard.html" class="btn">Back to Dashboard</a>
+    </div>
+    <script>
+        // Retrieve screen resolution
+        const resolution = ${window.screen.width} x ${window.screen.height};
+        document.getElementById("resolution").textContent = resolution;
+
+        // Estimate screen size (diagonal)
+        const dpi = window.devicePixelRatio || 1;
+        const screenWidthInInches = window.screen.width / (96 * dpi);
+        const screenHeightInInches = window.screen.height / (96 * dpi);
+        const screenSize = Math.sqrt(
+            Math.pow(screenWidthInInches, 2) + Math.pow(screenHeightInInches, 2)
+        ).toFixed(1);
+        document.getElementById("screenSize").textContent = ${screenSize}";
+    </script>
+</body>
+</html>

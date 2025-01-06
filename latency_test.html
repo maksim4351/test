@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latency Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="test-container">
+        <h1>Latency Test</h1>
+        <p>Press the button below to start the latency test.</p>
+        <button id="startTest" class="btn">Start Test</button>
+        <div id="latencyBox" class="latency-box"></div>
+        <p id="result" class="result">Result: <span id="latencyResult">--</span> ms</p>
+        <a href="dashboard.html" class="btn">Back to Dashboard</a>
+    </div>
+
+    <script>
+        const latencyBox = document.getElementById("latencyBox");
+        const result = document.getElementById("latencyResult");
+        const startButton = document.getElementById("startTest");
+
+        let startTime, endTime;
+
+        function randomDelay(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function startTest() {
+            result.textContent = "--";
+            latencyBox.style.backgroundColor = "#121212";
+
+            setTimeout(() => {
+                startTime = performance.now();
+                latencyBox.style.backgroundColor = "green";
+                latencyBox.addEventListener("click", stopTest, { once: true });
+            }, randomDelay(1000, 3000)); // Random delay between 1-3 seconds
+        }
+
+        function stopTest() {
+            endTime = performance.now();
+            const latency = Math.round(endTime - startTime);
+            result.textContent = latency;
+            latencyBox.style.backgroundColor = "#121212";
+        }
+
+        startButton.addEventListener("click", startTest);
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Вход на сайт</h1>
+        <form id="authForm">
+            <label for="pinCode">Введите пин-код:</label>
+            <input type="password" id="pinCode" name="pinCode" maxlength="4" required>
+            <button type="submit">Войти</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+    <script src="scripts/auth.js"></script>
+</body>
+</html>

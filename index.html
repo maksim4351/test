@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Welcome</h1>
+        <p>Enter the PIN code to access</p>
+        <form id="authForm">
+            <input type="password" id="pinCode" name="pinCode" maxlength="4" placeholder="Enter PIN code" required>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <p id="message" class="message"></p>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

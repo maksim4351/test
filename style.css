@@ -1,0 +1,168 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Containers */
+.test-container,
+.dashboard-container {
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+/* Description */
+p {
+    font-size: 16px;
+    color: #cccccc;
+    margin: 10px 0;
+}
+
+/* Button Groups */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Latency Box */
+.latency-box {
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    background-color: #121212;
+    border: 3px solid #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Result Display */
+.result {
+    font-size: 18px;
+    color: #cccccc;
+    margin-top: 20px;
+}
+
+.result span {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Notification Messages */
+.message {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    display: none;
+}
+
+.message.success {
+    color: #ffffff;
+    background-color: #28a745;
+}
+
+.message.error {
+    color: #ffffff;
+    background-color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .latency-box {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+/* Test Image */
+.image-container {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 400px;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+/* Brightness Slider */
+input[type="range"] {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+    -webkit-appearance: none;
+    background: #1e1e1e;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+}
