@@ -7,8 +7,8 @@ const fullscreenBtn = document.getElementById("fullscreenBtn");
 // Adjust brightness based on slider value
 brightnessSlider.addEventListener("input", () => {
     const brightness = brightnessSlider.value;
-    testImage.style.filter = brightness(${brightness}%);
-    brightnessValue.textContent = ${brightness}%;
+    testImage.style.filter = `brightness(${brightness}%)`;
+    brightnessValue.textContent = `${brightness}%`;
 });
 
 // Fullscreen mode

@@ -23,6 +23,51 @@ body {
     max-width: 500px;
 }
 
+.dashboard-container-split {
+    display: flex;
+    gap: 20px;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.button-column {
+    flex: 1;
+    text-align: center;
+}
+
+.info-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-box {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.info-box h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #007bff;
+}
+
+.info-box p {
+    margin: 10px 0;
+    color: #cccccc;
+}
+
+.info-box strong {
+    color: #ffffff;
+}
+
 /* Headings */
 h1 {
     margin-bottom: 20px;
@@ -62,6 +107,14 @@ p {
 .btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
 }
 
 /* Latency Box */
@@ -138,6 +191,18 @@ p {
     overflow: hidden;
 }
 
+/* Test Overlay */
+.test-overlay {
+    position: absolute;
+    font-size: 7vw;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 10;
+    transition: top 5s ease-in-out, left 5s ease-in-out, color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 .image-container img {
     width: 100%;
     height: auto;
@@ -165,4 +230,62 @@ input[type="range"]::-webkit-slider-thumb {
     background: #007bff;
     border-radius: 50%;
     cursor: pointer;
+}
+
+/* Info Container Styles */
+.info-container {
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+}
+
+.screen-info {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.screen-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.screen-info strong {
+    color: #007bff;
+}
+
+.instructions {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.instructions h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.instructions ol {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin: 10px 0;
+    color: #cccccc;
+}
+
+.instructions ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.instructions ul li {
+    margin: 5px 0;
 }
