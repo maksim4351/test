@@ -1,19 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Color Test - Free Online Monitor Color Rendering Test</title>
+    <meta name="description" content="Free online color test tool for monitors. Test color rendering, backlight uniformity, and color accuracy. Professional color testing with systematic color cycling.">
+    <meta name="keywords" content="color test, monitor color test, color rendering test, backlight uniformity test, color accuracy test, display color check">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/color_test.html">
+    <meta property="og:title" content="Color Test - Free Online Monitor Color Rendering Test">
+    <meta property="og:description" content="Professional color test tool for monitors. Test color rendering, backlight uniformity, and color accuracy with systematic testing.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/color_test.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Color Test",
+        "description": "Professional tool for testing color rendering and backlight uniformity on monitors",
+        "url": "https://maksim4351.github.io/test/color_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Color Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I start the color test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click the 'Start Test' button to enter fullscreen mode and begin the color test."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I navigate through different colors?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use arrow keys to switch colors, Space to pause/resume, and Esc to exit the test."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What should I look for during the color test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Look for any color inconsistencies, uneven backlight, or areas that appear different from the rest of the screen."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <div class="test-container" id="testContainer">
-        <div id="testOverlay" class="test-overlay">T E S T</div>
-        <button id="startTest" class="btn">Start Test</button>
+        <div id="startScreen">
+            <h1 id="colorTestTitle">Color Test</h1>
+            <p id="colorTestDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                Test for color rendering and backlight uniformity.<br>
+                Click <b>Start Test</b> to enter fullscreen mode.<br>
+                Use <b>arrow keys</b> to switch colors, <b>Space</b> to pause/resume, <b>Esc</b> to exit.<br>
+                After exiting, the button to return to the main page will appear.
+            </p>
+            <button id="startTest" class="btn">Start Test</button>
+            <a id="backToDashboard" href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
+        </div>
+        <div id="testOverlay" class="test-overlay" style="display:none;">T E S T</div>
         <div id="controls" class="button-group" style="display: none;">
-            <a href="dashboard.html" class="btn">Back to Dashboard</a>
+            <a href="index.html" class="btn">Back to Dashboard</a>
         </div>
     </div>
+    <!-- Language Switcher -->
+    <div style="display:none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.9); padding: 12px; border-radius: 10px; border: 1px solid #555;">
+        <label for="languageSelect" style="color: white; font-size: 12px; display: block; margin-bottom: 5px;">🌍 Language:</label>
+        <select id="languageSelect" style="background: #333; color: white; border: 1px solid #555; padding: 8px; border-radius: 6px; font-size: 14px; min-width: 120px;">
+            <option value="en">🇺🇸 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="sv">🇸🇪 Svenska</option>
+            <option value="fi">🇫🇮 Suomi</option>
+            <option value="no">🇳🇴 Norsk</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="cs">🇨🇿 Čeština</option>
+        </select>
+    </div>
+    <!-- Auto-translation notification -->
+    <div id="autoTranslationNotice" style="display:none; position: fixed; top: 80px; right: 20px; z-index: 999; background: rgba(76, 175, 80, 0.9); color: white; padding: 12px; border-radius: 8px; font-size: 14px; max-width: 250px; border: 1px solid #4CAF50;">
+        <div style="font-weight: bold; margin-bottom: 5px;">🌍 Auto-translated</div>
+        <div style="font-size: 12px;">Site automatically translated to your language</div>
+        <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">×</button>
+    </div>
+    <script src="translations.js?v=1.0"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageSelect = document.getElementById('languageSelect');
+        const currentLang = detectLanguage();
+        languageSelect.value = currentLang;
+        if (currentLang !== 'en') {
+            const notice = document.getElementById('autoTranslationNotice');
+            notice.style.display = 'block';
+            setTimeout(() => { notice.style.display = 'none'; }, 5000);
+        }
+        languageSelect.addEventListener('change', function() {
+            switchLanguage(this.value);
+        });
+        applyTranslations(currentLang);
+    });
+    </script>
     <script>
         const colors = [
             { bg: "#FFFFFF", text: "rgba(0, 0, 0, 0.075)" },
@@ -27,6 +183,7 @@
         let isPaused = false;
 
         const testContainer = document.getElementById("testContainer");
+        const startScreen = document.getElementById("startScreen");
         const startTestButton = document.getElementById("startTest");
         const controls = document.getElementById("controls");
         const testOverlay = document.getElementById("testOverlay");
@@ -61,14 +218,15 @@
             isPaused = false;
             currentIndex = 0;
             testContainer.style.background = "#1e1e1e";
-            startTestButton.style.display = "none";
-            controls.style.display = "flex";
-            testOverlay.style.opacity = 0;
+            startScreen.style.display = "block";
+            testOverlay.style.display = "none";
+            controls.style.display = "none";
         }
 
         startTestButton.addEventListener("click", () => {
-            startTestButton.style.display = "none";
+            startScreen.style.display = "none";
             controls.style.display = "none";
+            testOverlay.style.display = "block";
             testContainer.requestFullscreen();
         });
 

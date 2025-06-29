@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Image Retention Test - Free Online Monitor Burn-in Detection</title>
+    <meta name="description" content="Free online image retention test tool for monitors. Test for image retention (burn-in) with static white rectangle and gray background. Professional retention testing.">
+    <meta name="keywords" content="image retention test, burn-in test, monitor retention test, display retention test, ghost image test, screen burn test">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/image_retention_test.html">
+    <meta property="og:title" content="Image Retention Test - Free Online Monitor Burn-in Detection">
+    <meta property="og:description" content="Professional image retention test tool for monitors. Test for burn-in with systematic retention testing.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/image_retention_test.html">
+    
+    <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Image Retention Test",
+        "description": "Professional tool for testing image retention and burn-in on monitors",
+        "url": "https://maksim4351.github.io/test/image_retention_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Image Retention Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- HowTo Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Test for Image Retention",
+        "description": "Step-by-step guide to test your monitor for image retention (burn-in)",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Start the test",
+                "text": "Click the 'Start Test' button to begin the image retention test."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "White rectangle phase",
+                "text": "A static white rectangle will be displayed for 60 seconds. This creates a potential retention pattern."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Gray background phase",
+                "text": "After 60 seconds, the screen will switch to a gray background. Look for any 'ghost' images of the white rectangle."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Check for retention",
+                "text": "If you see any faint outlines or ghost images of the white rectangle, your monitor may have image retention issues."
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="test-container" id="imageRetentionTestContainer">
+        <div id="startScreen">
+            <h1 id="imageRetentionTestTitle">Image Retention Test</h1>
+            <p id="imageRetentionTestDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                Test your display for image retention (burn-in).<br>
+                A static white rectangle will be shown for 1 minute, then a gray background.<br>
+                Look for any "ghost" images. Click <b>Start Test</b> to begin. Press <b>Back to Dashboard</b> to return.
+            </p>
+            <button id="startImageRetentionTestBtn" class="btn">Start Test</button>
+            <a href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
+        </div>
+        <div id="imageRetentionTestArea" style="display:none; width:100vw; height:100vh; position:fixed; left:0; top:0; background:#111; z-index:1000;">
+            <canvas id="imageRetentionCanvas" style="width:100vw; height:100vh; display:block;"></canvas>
+            <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);color:#111;font-size:36px;z-index:1100;display:flex;flex-direction:column;align-items:center;gap:24px;">
+                <span id="timer" style="background:#fff;padding:8px 32px;border-radius:12px;box-shadow:0 2px 8px #0002;">60 s</span>
+                <button id="exitBtn" class="btn" style="font-size:22px;min-width:120px;">Exit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
+        const startScreen = document.getElementById('startScreen');
+        const startTestBtn = document.getElementById('startImageRetentionTestBtn');
+        const imageRetentionTestArea = document.getElementById('imageRetentionTestArea');
+        const imageRetentionCanvas = document.getElementById('imageRetentionCanvas');
+        const exitBtn = document.getElementById('exitBtn');
+        const timerSpan = document.getElementById('timer');
+        let ctx, timer = 60, timerId = null, phase = 0;
+        function resizeCanvas() {
+            imageRetentionCanvas.width = window.innerWidth;
+            imageRetentionCanvas.height = window.innerHeight;
+        }
+        function drawWhiteRect() {
+            ctx = imageRetentionCanvas.getContext('2d');
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0,0,imageRetentionCanvas.width,imageRetentionCanvas.height);
+        }
+        function drawGray() {
+            ctx = imageRetentionCanvas.getContext('2d');
+            ctx.fillStyle = '#888';
+            ctx.fillRect(0,0,imageRetentionCanvas.width,imageRetentionCanvas.height);
+        }
+        function startTimer() {
+            timer = 60;
+            timerSpan.textContent = timer + ' s';
+            timerId = setInterval(() => {
+                timer--;
+                timerSpan.textContent = timer + ' s';
+                if (timer === 0) {
+                    clearInterval(timerId);
+                    phase = 1;
+                    drawGray();
+                }
+            }, 1000);
+        }
+        startTestBtn.onclick = () => {
+            startScreen.style.display = 'none';
+            imageRetentionTestArea.style.display = 'block';
+            resizeCanvas();
+            drawWhiteRect();
+            phase = 0;
+            startTimer();
+        };
+        exitBtn.onclick = () => {
+            imageRetentionTestArea.style.display = 'none';
+            startScreen.style.display = 'block';
+            if (timerId) clearInterval(timerId);
+        };
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (imageRetentionTestArea.style.display === 'block') {
+                if (phase === 0) drawWhiteRect();
+                else drawGray();
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,37 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dead Pixel Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Dead Pixel Test - Free Online Monitor Pixel Detection Tool</title>
+    <meta name="description" content="Free online dead pixel test tool. Detect stuck, dead, or hot pixels on your monitor. Professional pixel testing with systematic screen scanning.">
+    <meta name="keywords" content="dead pixel test, stuck pixel test, hot pixel test, monitor pixel detection, screen pixel test, display pixel check">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-github-username.github.io/your-repo-name/dead_pixel_test.html">
+    <meta property="og:title" content="Dead Pixel Test - Free Online Monitor Pixel Detection">
+    <meta property="og:description" content="Professional dead pixel detection tool. Find stuck, dead, or hot pixels on your monitor with systematic testing.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-github-username.github.io/your-repo-name/dead_pixel_test.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Dead Pixel Test",
+        "description": "Professional tool for detecting dead, stuck, and hot pixels on monitors",
+        "url": "https://your-github-username.github.io/your-repo-name/dead_pixel_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Dead Pixel Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
 </head>
 <body>
-    <div id="test-area" style="width: 100vw; height: 100vh; cursor: pointer;"></div>
-    <div class="instructions-overlay">
-        <p>Click anywhere to cycle through colors.</p>
-        <p>Press ESC to exit.</p>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="test-container">
+        <h1 id="deadPixelTitle">Dead Pixel Test</h1>
+        <p id="deadPixelDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+            Test for dead, stuck, or hot pixels on your monitor.<br>
+            Click <b>Start Test</b> to begin. Use arrow keys or click to cycle colors.<br>
+            Use <b>Dynamic Line</b> to run a moving line for additional pixel check.<br>
+            Press <b>Back to Dashboard</b> to return to the main menu.
+        </p>
+        <div class="test-info">
+            <h2 id="deadPixelHowTo">How to Use:</h2>
+            <ul id="deadPixelHowToList">
+                <li id="deadPixelHowTo1">Click "Start Test" to begin pixel detection</li>
+                <li id="deadPixelHowTo2">Look for any pixels that don't match the background color</li>
+                <li id="deadPixelHowTo3">Click on any defective pixels to mark them</li>
+                <li id="deadPixelHowTo4">Use arrow keys or click to navigate</li>
+                <li id="deadPixelHowTo5">Test will cycle through different colors</li>
+            </ul>
+        </div>
+        <div class="controls">
+            <button id="startBtn" class="btn">Start Test</button>
+            <button id="startLineBtn" class="btn">Dynamic Line</button>
+            <button id="stopLineBtn" class="btn" style="display:none;">Stop Line</button>
+            <a id="backToDashboard" href="index.html" class="btn">Back to Dashboard</a>
+        </div>
+        
+        <div id="testArea" class="test-area" style="display: none;">
+            <div id="pixelGrid"></div>
+            <div class="test-status">
+                <p>Current Color: <span id="currentColor">-</span></p>
+                <p>Defective Pixels Found: <span id="defectiveCount">0</span></p>
+                <p>Progress: <span id="progress">0%</span></p>
+            </div>
+        </div>
+        <div id="dynamicLineArea" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; z-index:1000; background:#000;">
+            <canvas id="dynamicLineCanvas" style="display:block; width:100vw; height:100vh;"></canvas>
+        </div>
     </div>
+
+    <!-- Language Switcher -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.9); padding: 12px; border-radius: 10px; border: 1px solid #555;">
+        <label for="languageSelect" style="color: white; font-size: 12px; display: block; margin-bottom: 5px;">🌍 Language:</label>
+        <select id="languageSelect" style="background: #333; color: white; border: 1px solid #555; padding: 8px; border-radius: 6px; font-size: 14px; min-width: 120px;">
+            <option value="en">🇺🇸 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="sv">🇸🇪 Svenska</option>
+            <option value="fi">🇫🇮 Suomi</option>
+            <option value="no">🇳🇴 Norsk</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="cs">🇨🇿 Čeština</option>
+        </select>
+    </div>
+    <!-- Auto-translation notification -->
+    <div id="autoTranslationNotice" style="position: fixed; top: 80px; right: 20px; z-index: 999; background: rgba(76, 175, 80, 0.9); color: white; padding: 12px; border-radius: 8px; font-size: 14px; max-width: 250px; display: none; border: 1px solid #4CAF50;">
+        <div style="font-weight: bold; margin-bottom: 5px;">🌍 Auto-translated</div>
+        <div style="font-size: 12px;">Site automatically translated to your language</div>
+        <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">×</button>
+    </div>
+    <script src="translations.js?v=1.0"></script>
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         const testArea = document.getElementById('test-area');
         const colors = ['#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff'];
         let currentIndex = 0;
-
         function changeColor() {
             testArea.style.backgroundColor = colors[currentIndex];
             currentIndex = (currentIndex + 1) % colors.length;
         }
-
         // Initial state
         changeColor();
-
-        testArea.addEventListener('click', changeColor);
-
+        if (testArea) testArea.addEventListener('click', changeColor);
+        // Кнопка Start Test
+        const startBtn = document.getElementById('startBtn');
+        if (startBtn && testArea) {
+            startBtn.addEventListener('click', function() {
+                testArea.style.display = 'block';
+            });
+        }
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'index.html';
             }
         });
+        // === Динамическая линия ===
+        const startLineBtn = document.getElementById('startLineBtn');
+        const stopLineBtn = document.getElementById('stopLineBtn');
+        const dynamicLineArea = document.getElementById('dynamicLineArea');
+        const dynamicLineCanvas = document.getElementById('dynamicLineCanvas');
+        let lineAnimationId = null;
+        let linePos = 0;
+        let lineSpeed = 3; // px per frame
+        function resizeCanvas() {
+            if (!dynamicLineCanvas) return;
+            dynamicLineCanvas.width = window.innerWidth;
+            dynamicLineCanvas.height = window.innerHeight;
+        }
+        function drawMovingLine() {
+            const ctx = dynamicLineCanvas.getContext('2d');
+            ctx.clearRect(0, 0, dynamicLineCanvas.width, dynamicLineCanvas.height);
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(0, 0 + linePos);
+            ctx.lineTo(0 + linePos, 0);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(linePos, linePos);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(dynamicLineCanvas.width, 0);
+            ctx.lineTo(dynamicLineCanvas.width - linePos, linePos);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, dynamicLineCanvas.height);
+            ctx.lineTo(linePos, dynamicLineCanvas.height - linePos);
+            ctx.stroke();
+            linePos += lineSpeed;
+            if (linePos < Math.max(dynamicLineCanvas.width, dynamicLineCanvas.height)) {
+                lineAnimationId = requestAnimationFrame(drawMovingLine);
+            } else {
+                stopDynamicLine();
+            }
+        }
+        function startDynamicLine() {
+            resizeCanvas();
+            linePos = 0;
+            dynamicLineArea.style.display = 'block';
+            if (startLineBtn) startLineBtn.style.display = 'none';
+            if (stopLineBtn) stopLineBtn.style.display = 'inline-block';
+            lineAnimationId = requestAnimationFrame(drawMovingLine);
+        }
+        function stopDynamicLine() {
+            if (lineAnimationId) cancelAnimationFrame(lineAnimationId);
+            dynamicLineArea.style.display = 'none';
+            if (startLineBtn) startLineBtn.style.display = 'inline-block';
+            if (stopLineBtn) stopLineBtn.style.display = 'none';
+        }
+        if (startLineBtn) startLineBtn.addEventListener('click', startDynamicLine);
+        if (stopLineBtn) stopLineBtn.addEventListener('click', stopDynamicLine);
+        window.addEventListener('resize', resizeCanvas);
+        if (dynamicLineArea) dynamicLineArea.addEventListener('click', stopDynamicLine);
+        document.addEventListener('keydown', (event) => {
+            if (dynamicLineArea && dynamicLineArea.style.display === 'block' && event.key === 'Escape') {
+                stopDynamicLine();
+            }
+        });
+        const languageSelect = document.getElementById('languageSelect');
+        const currentLang = detectLanguage();
+        languageSelect.value = currentLang;
+        if (currentLang !== 'en') {
+            const notice = document.getElementById('autoTranslationNotice');
+            notice.style.display = 'block';
+            setTimeout(() => { notice.style.display = 'none'; }, 5000);
+        }
+        languageSelect.addEventListener('change', function() {
+            switchLanguage(this.value);
+        });
+        applyTranslations(currentLang);
+    });
     </script>
 </body>
 <style>

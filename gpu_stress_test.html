@@ -1,22 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPU Stress Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>GPU Stress Test - Free Online Graphics Card Performance Test</title>
+    <meta name="description" content="Free online GPU stress test tool. Test your graphics card performance in real time with 3D rendering. Professional GPU testing with FPS monitoring and performance analysis.">
+    <meta name="keywords" content="GPU stress test, graphics card test, GPU performance test, FPS test, graphics performance test, GPU benchmark, graphics card benchmark">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/gpu_stress_test.html">
+    <meta property="og:title" content="GPU Stress Test - Free Online Graphics Card Performance Test">
+    <meta property="og:description" content="Professional GPU stress test tool. Test graphics card performance with real-time 3D rendering and FPS monitoring.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/gpu_stress_test.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "GPU Stress Test",
+        "description": "Professional tool for testing graphics card performance and GPU stress testing",
+        "url": "https://maksim4351.github.io/test/gpu_stress_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "GPU Stress Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I start the GPU stress test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The test starts automatically when you load the page. You can click anywhere to add more 3D objects and increase the stress on your GPU."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What metrics are displayed?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The test shows FPS (frames per second), average FPS, minimum FPS, number of objects, and overall performance status (Excellent/Good/Poor)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I interpret the results?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Higher FPS indicates better performance. Excellent: 58+ FPS, Good: 30-57 FPS, Poor: Below 30 FPS. Add more objects to stress test your GPU further."
+                }
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <div id="info">
+        <h1 id="gpuStressTestTitle">GPU Stress Test</h1>
+        <p id="gpuStressTestDescription">Test your graphics card performance in real time.<br>
+        Observe FPS, minimum and average values. Click anywhere to add more objects.<br>
+        Press <b>Back to Dashboard</b> to return to the main menu.</p>
         GPU Stress Test<br/>
         <span id="gpu-renderer">Detecting GPU...</span><br/><br/>
         Objects: <span id="objects-count">0</span><br/>
         FPS: <span id="fps">--</span> (Avg: <span id="avg-fps">--</span>, Min: <span id="min-fps">--</span>)<br/>
         Performance: <span id="performance-status" style="font-weight: bold;">--</span>
+        <a href="index.html" id="back-btn" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
     </div>
-    <a href="dashboard.html" id="back-btn" class="btn" style="position: absolute; top: 20px; right: 20px; z-index: 10;">Back to Dashboard</a>
     <script src="three.min.js?v=1.1"></script>
     <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
         // --- Config ---
         const AUTO_TEST_DURATION = 3000; // 3 seconds
         const AUTO_TEST_OBJECT_COUNT = 700;
@@ -104,7 +212,7 @@
             
             const results = { objects: AUTO_TEST_OBJECT_COUNT, avg, min, status, statusColor };
             sessionStorage.setItem('gpuCheckResults', JSON.stringify(results));
-            window.location.href = 'dashboard.html';
+            window.location.href = 'index.html';
         }
 
         function runInteractiveTest() {
@@ -167,11 +275,32 @@
         left: 20px;
         color: white;
         font-family: Arial, sans-serif;
-        font-size: 16px;
-        background-color: rgba(0,0,0,0.5);
-        padding: 10px;
+        font-size: 14px;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 300px;
+    }
+    #info h1 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+    }
+    #info p {
+        margin: 0 0 15px 0;
+        line-height: 1.4;
+    }
+    .btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
         border-radius: 5px;
-        min-width: 250px;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
     }
 </style>
 </html> 

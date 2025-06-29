@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://maksim4351.github.io/test/sitemap.xml
+
+# Allow all pages to be indexed
+Allow: /index.html
+Allow: /color_test.html
+Allow: /cluster_test.html
+Allow: /latency_test.html
+Allow: /view_angle.html
+Allow: /dead_pixel_test.html
+Allow: /gradient_test.html
+Allow: /gpu_stress_test.html
+Allow: /screen_info.html
+
+# Allow CSS and JS files
+Allow: /style.css
+Allow: /auth.js
+Allow: /view_angle.js
+Allow: /three.min.js
+
+# Allow images
+Allow: /test_image.jpg
+Allow: /high_resolution_image.jpg 

@@ -28,76 +28,8 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Screen Information - Free Online Monitor and Display Information Tool</title>
-    <meta name="description" content="Free online screen information tool. Get detailed information about your monitor, display specifications, browser details, and system information. Professional display diagnostics.">
-    <meta name="keywords" content="screen information, monitor information, display specs, screen resolution, monitor details, display information, screen diagnostics">
-    <meta name="author" content="Monitor Test Tool">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://maksim4351.github.io/test/screen_info.html">
-    <meta property="og:title" content="Screen Information - Free Online Monitor and Display Information Tool">
-    <meta property="og:description" content="Professional screen information tool. Get detailed monitor and display specifications with comprehensive system information.">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://maksim4351.github.io/test/screen_info.html">
-    
+    <title>Screen Information - Simple Version</title>
     <link rel="stylesheet" href="style.css?v=1.1">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Screen Information",
-        "description": "Professional tool for displaying detailed monitor and system information",
-        "url": "https://maksim4351.github.io/test/screen_info.html",
-        "mainEntity": {
-            "@type": "SoftwareApplication",
-            "name": "Screen Information Tool",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Web Browser"
-        }
-    }
-    </script>
-    
-    <!-- FAQ Microdata -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What information does this tool display?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The tool displays total resolution, aspect ratio, color depth, pixel ratio, refresh rate, HDR support, touch support, color gamut, and browser information."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How do I copy the screen information?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Click the 'Copy Screen Info' button to copy all the displayed information to your clipboard for easy sharing or reference."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How do I provide feedback?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Fill out the feedback form at the bottom of the page with your email and message, then click 'Send via Email' to submit your feedback."
-                }
-            }
-        ]
-    }
-    </script>
-    <script src="translations.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -133,8 +65,8 @@
         </aside>
         <div style="flex:1;min-width:0;">
             <div class="info-container">
-                <h1 id="screenInfoTitle">Screen Information</h1>
-                <p id="screenInfoDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                <h1>Screen Information</h1>
+                <p style="text-align:center; max-width:600px; margin:0 auto 20px;">
                     This service helps you test your monitor, check for defects, and view detailed screen and browser information. Use the tools to evaluate your display quality, color, latency, and GPU performance.
                 </p>
                 <div class="screen-info" id="screenInfoBlock">
@@ -192,12 +124,6 @@
                 <div style="text-align:center; margin-top:24px; color:#888; font-size:13px;">All tests run locally in your browser. No data is sent anywhere. | Version 1.1</div>
             </div>
             <script>
-                // Apply translations on page load
-                document.addEventListener('DOMContentLoaded', function() {
-                    const currentLang = detectLanguage();
-                    applyTranslations(currentLang);
-                });
-
                 document.getElementById('sendFeedbackBtn').addEventListener('click', function() {
                     const email = document.getElementById('userEmail').value.trim();
                     const message = document.getElementById('feedbackText').value.trim();
@@ -354,6 +280,5 @@
             </script>
         </div>
     </div>
-    <script src="screen_info.js?v=1.1"></script>
 </body>
 </html> 

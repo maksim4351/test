@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Touch Grid Test - Free Online Touch Screen Uniformity Test</title>
+    <meta name="description" content="Free online touch grid test tool for touch screens. Test touch screen uniformity by touching every cell in the grid. Professional touch screen testing.">
+    <meta name="keywords" content="touch grid test, touch screen test, touch uniformity test, touch screen grid test, touch screen uniformity, touch screen check">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/touch_grid_test.html">
+    <meta property="og:title" content="Touch Grid Test - Free Online Touch Screen Uniformity Test">
+    <meta property="og:description" content="Professional touch grid test tool for touch screens. Test touch screen uniformity with systematic grid testing.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/touch_grid_test.html">
+    
+    <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Touch Grid Test",
+        "description": "Professional tool for testing touch screen uniformity",
+        "url": "https://maksim4351.github.io/test/touch_grid_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Touch Grid Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- HowTo Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Test Touch Screen Uniformity",
+        "description": "Step-by-step guide to test your touch screen uniformity using a grid",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Start the test",
+                "text": "Click the 'Start Test' button to begin the touch grid test."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Touch every cell",
+                "text": "Touch or click every cell in the 14x14 grid. Visited cells will be highlighted in blue."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Check for dead zones",
+                "text": "Look for any cells that don't respond to touch or areas where touch response is inconsistent."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Complete the grid",
+                "text": "Continue until you've touched all cells or identified any problematic areas."
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="test-container" id="touchGridTestContainer">
+        <div id="startScreen">
+            <h1 id="touchGridTestTitle">Touch Grid Test</h1>
+            <p id="touchGridTestDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                Test the uniformity of your touch screen.<br>
+                Touch or click every cell in the grid. Visited cells will be highlighted.<br>
+                Click <b>Start Test</b> to begin. Press <b>Back to Dashboard</b> to return.
+            </p>
+            <button id="startTouchGridTestBtn" class="btn">Start Test</button>
+            <a href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
+        </div>
+        <div id="touchGridTestArea" style="display:none; width:100vw; height:100vh; position:fixed; left:0; top:0; background:#111; z-index:1000;">
+            <canvas id="touchGridCanvas" style="width:100vw; height:100vh; display:block;"></canvas>
+            <div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:20px;z-index:1100;">
+                <button id="exitBtn" class="btn">Exit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
+        const startScreen = document.getElementById('startScreen');
+        const startTestBtn = document.getElementById('startTouchGridTestBtn');
+        const touchGridTestArea = document.getElementById('touchGridTestArea');
+        const touchGridCanvas = document.getElementById('touchGridCanvas');
+        const exitBtn = document.getElementById('exitBtn');
+        let ctx, grid, cellWidth, cellHeight, rows, cols;
+        function resizeCanvas() {
+            touchGridCanvas.width = window.innerWidth;
+            touchGridCanvas.height = window.innerHeight;
+            rows = cols = 14;
+            cellWidth = touchGridCanvas.width / cols;
+            cellHeight = touchGridCanvas.height / rows;
+            grid = Array.from({length: rows}, () => Array(cols).fill(false));
+            drawGrid();
+        }
+        function drawGrid() {
+            ctx = touchGridCanvas.getContext('2d');
+            ctx.clearRect(0,0,touchGridCanvas.width,touchGridCanvas.height);
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    ctx.strokeStyle = '#888';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(c*cellWidth, r*cellHeight, cellWidth, cellHeight);
+                    if (grid[r][c]) {
+                        ctx.fillStyle = '#0af8';
+                        ctx.fillRect(c*cellWidth+2, r*cellHeight+2, cellWidth-4, cellHeight-4);
+                    }
+                }
+            }
+        }
+        function markCell(x, y) {
+            const c = Math.floor(x / cellWidth);
+            const r = Math.floor(y / cellHeight);
+            if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                grid[r][c] = true;
+                drawGrid();
+            }
+        }
+        touchGridCanvas.addEventListener('mousedown', e => { markCell(e.offsetX, e.offsetY); });
+        touchGridCanvas.addEventListener('touchstart', e => {
+            for (let t of e.touches) {
+                const rect = touchGridCanvas.getBoundingClientRect();
+                markCell(t.clientX - rect.left, t.clientY - rect.top);
+            }
+        });
+        startTestBtn.onclick = () => {
+            startScreen.style.display = 'none';
+            touchGridTestArea.style.display = 'block';
+            resizeCanvas();
+        };
+        exitBtn.onclick = () => {
+            touchGridTestArea.style.display = 'none';
+            startScreen.style.display = 'block';
+        };
+        window.addEventListener('resize', resizeCanvas);
+    </script>
+</body>
+</html> 

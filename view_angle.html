@@ -1,29 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Angle Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>View Angle Test - Free Online Monitor Viewing Angle Check</title>
+    <meta name="description" content="Free online view angle test tool for monitors. Test viewing angles and color consistency from different positions. Professional angle testing with color cycling.">
+    <meta name="keywords" content="view angle test, monitor viewing angle test, color consistency test, viewing angle check, display angle test, monitor angle test">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/view_angle.html">
+    <meta property="og:title" content="View Angle Test - Free Online Monitor Viewing Angle Check">
+    <meta property="og:description" content="Professional view angle test tool for monitors. Test viewing angles and color consistency from different positions.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/view_angle.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "View Angle Test",
+        "description": "Professional tool for testing viewing angles and color consistency on monitors",
+        "url": "https://maksim4351.github.io/test/view_angle.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "View Angle Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I test viewing angles?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click 'Start Test' and move around your monitor to observe how colors change from different viewing angles."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What colors are used in the view angle test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The test cycles through red, green, blue, yellow, magenta, cyan, white, and black colors."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I navigate through different colors?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use arrow keys to switch colors manually, or let the test cycle automatically every 2 seconds."
+                }
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <div class="test-container">
-        <h1>View Angle Test</h1>
-        <p>Adjust the brightness slider to test the viewing angles of your monitor. Press "Full Screen" for better results.</p>
-        
-        <div class="image-container">
-            <img id="testImage" src="test_image.jpg" alt="Test Image">
-        </div>
-
-        <input id="brightnessSlider" type="range" min="0" max="200" value="100">
-        <p>Brightness: <span id="brightnessValue">100%</span></p>
-
-        <div class="button-group">
-            <button class="btn" id="fullscreenBtn">Full Screen</button>
-            <a href="dashboard.html" class="btn">Back to Dashboard</a>
-        </div>
+        <h1 id="viewAngleTestTitle">View Angle Test</h1>
+        <p id="viewAngleTestDescription">Test monitor viewing angles and color consistency from different positions.<br>
+        Move around your monitor and observe how colors change from different angles.<br>
+        Click <b>Start Test</b> to begin. Use <b>arrow keys</b> to switch colors, <b>Esc</b> to exit.</p>
+        <button id="startViewAngleTestBtn" class="btn">Start Test</button>
+        <div id="colorBox" class="color-box"></div>
+        <a href="index.html" class="btn">Back to Dashboard</a>
     </div>
 
-    <script src="view_angle.js?v=1.1"></script>
+    <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
+        const colorBox = document.getElementById("colorBox");
+        const startButton = document.getElementById("startViewAngleTestBtn");
+        let currentColor = 0;
+        let colorInterval;
+
+        const colors = [
+            "#FF0000", // Red
+            "#00FF00", // Green
+            "#0000FF", // Blue
+            "#FFFF00", // Yellow
+            "#FF00FF", // Magenta
+            "#00FFFF", // Cyan
+            "#FFFFFF", // White
+            "#000000"  // Black
+        ];
+
+        function startTest() {
+            colorBox.style.backgroundColor = colors[currentColor];
+            colorInterval = setInterval(() => {
+                currentColor = (currentColor + 1) % colors.length;
+                colorBox.style.backgroundColor = colors[currentColor];
+            }, 2000);
+        }
+
+        function stopTest() {
+            if (colorInterval) {
+                clearInterval(colorInterval);
+                colorInterval = null;
+            }
+        }
+
+        startButton.addEventListener("click", startTest);
+
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "Escape") {
+                stopTest();
+            } else if (event.code === "ArrowRight") {
+                currentColor = (currentColor + 1) % colors.length;
+                colorBox.style.backgroundColor = colors[currentColor];
+            } else if (event.code === "ArrowLeft") {
+                currentColor = (currentColor - 1 + colors.length) % colors.length;
+                colorBox.style.backgroundColor = colors[currentColor];
+            }
+        });
+    </script>
 </body>
 </html>

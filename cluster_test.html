@@ -1,20 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cluster Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Cluster Test - Free Online Monitor Cluster Defect Detection</title>
+    <meta name="description" content="Free online cluster test tool for monitors. Detect cluster defects, uniformity issues using vertical stripes, horizontal stripes, and checkerboard patterns.">
+    <meta name="keywords" content="cluster test, monitor cluster test, cluster defect test, uniformity test, stripe pattern test, checkerboard test, display uniformity">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/cluster_test.html">
+    <meta property="og:title" content="Cluster Test - Free Online Monitor Cluster Defect Detection">
+    <meta property="og:description" content="Professional cluster test tool for monitors. Detect cluster defects and uniformity issues using systematic pattern testing.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/cluster_test.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Cluster Test",
+        "description": "Professional tool for detecting cluster defects and uniformity issues on monitors",
+        "url": "https://maksim4351.github.io/test/cluster_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Cluster Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I start the cluster test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click the 'Start Cluster Test' button to enter fullscreen mode and begin testing for cluster defects."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What patterns are used in the cluster test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The test uses vertical stripes, horizontal stripes, and checkerboard patterns to detect cluster defects and uniformity issues."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I navigate through different patterns?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use arrow keys to switch patterns, Space to pause/resume, and Esc to exit the test."
+                }
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <div class="test-container" id="testContainer">
-        <div id="testOverlay" class="test-overlay">T E S T</div>
-        <button id="startTest" class="btn">Start Cluster Test</button>
+        <div id="startScreen">
+            <h1 id="clusterTestTitle">Cluster Test</h1>
+            <p id="clusterTestDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                Test for cluster defects and uniformity using patterns (vertical, horizontal stripes, checkerboard).<br>
+                Click <b>Start Cluster Test</b> to enter fullscreen mode.<br>
+                Use <b>arrow keys</b> to switch patterns, <b>Space</b> to pause/resume, <b>Esc</b> to exit.<br>
+                After exiting, the button to return to the main page will appear.
+            </p>
+            <button id="startClusterTestBtn" class="btn">Start Cluster Test</button>
+            <a href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
+        </div>
+        <div id="testOverlay" class="test-overlay" style="display:none;">T E S T</div>
         <div id="controls" class="button-group" style="display: none;">
-            <a href="dashboard.html" class="btn">Back to Dashboard</a>
+            <a href="index.html" class="btn">Back to Dashboard</a>
         </div>
     </div>
     <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
         const patterns = [
             "linear-gradient(to right, black 50%, white 50%)", // Vertical stripes
             "linear-gradient(to bottom, black 50%, white 50%)", // Horizontal stripes
@@ -26,7 +140,8 @@
         let isPaused = false;
 
         const testContainer = document.getElementById("testContainer");
-        const startTestButton = document.getElementById("startTest");
+        const startScreen = document.getElementById("startScreen");
+        const startTestButton = document.getElementById("startClusterTestBtn");
         const controls = document.getElementById("controls");
         const testOverlay = document.getElementById("testOverlay");
 
@@ -53,14 +168,15 @@
             isPaused = false;
             currentPattern = 0;
             testContainer.style.background = "#1e1e1e";
-            startTestButton.style.display = "none";
-            controls.style.display = "flex";
-            testOverlay.style.opacity = 0;
+            startScreen.style.display = "block";
+            testOverlay.style.display = "none";
+            controls.style.display = "none";
         }
 
         startTestButton.addEventListener("click", () => {
-            startTestButton.style.display = "none";
+            startScreen.style.display = "none";
             controls.style.display = "none";
+            testOverlay.style.display = "block";
             testContainer.requestFullscreen();
         });
 

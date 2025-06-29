@@ -1,18 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient Test</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Gradient Test - Free Online Monitor Color Banding Detection</title>
+    <meta name="description" content="Free online gradient test tool for monitors. Test for color banding and gradient smoothness. Professional gradient testing with multiple color transitions.">
+    <meta name="keywords" content="gradient test, color banding test, gradient smoothness test, monitor gradient test, display gradient check, color transition test">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/gradient_test.html">
+    <meta property="og:title" content="Gradient Test - Free Online Monitor Color Banding Detection">
+    <meta property="og:description" content="Professional gradient test tool for monitors. Test for color banding and gradient smoothness with multiple color transitions.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/gradient_test.html">
+    
     <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Gradient Test",
+        "description": "Professional tool for testing color banding and gradient smoothness on monitors",
+        "url": "https://maksim4351.github.io/test/gradient_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Gradient Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I start the gradient test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click the 'Start Test' button to begin testing for color banding and gradient smoothness."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What should I look for during the gradient test?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Look for any visible bands or steps in the gradients instead of smooth color transitions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I navigate through different gradients?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click anywhere to cycle through gradients, use arrow keys, or let the test cycle automatically every 5 seconds."
+                }
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
 </head>
 <body>
-    <div id="gradient-area" style="width: 100vw; height: 100vh; cursor: pointer;"></div>
-    <div class="instructions-overlay">
-        <p>Click anywhere to cycle through gradients.</p>
-        <p>Press ESC to exit.</p>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="test-container" id="gradientTestContainer" style="position: absolute; top: 30px; left: 0; right: 0; margin: 0 auto; max-width: 600px; z-index: 10; text-align: center;">
+        <h1 id="gradientTestTitle">Gradient Test</h1>
+        <p id="gradientTestDescription">Test for color banding and gradient smoothness.<br>
+        Click <b>Start Test</b> to begin. Click anywhere to cycle through gradients. Press <b>Esc</b> to exit.</p>
+        <button id="startGradientTestBtn" class="btn">Start Test</button>
+        <a href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
     </div>
+    <div id="gradient-area" style="width: 100vw; height: 100vh; cursor: pointer; display: none;"></div>
     <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
         const gradientArea = document.getElementById('gradient-area');
         const gradients = [
             'linear-gradient(to right, #000, #fff)',
@@ -22,20 +129,57 @@
             'linear-gradient(to right, #0000ff, #000000)'
         ];
         let currentIndex = 0;
-
-        function changeGradient() {
-            gradientArea.style.background = gradients[currentIndex];
-            currentIndex = (currentIndex + 1) % gradients.length;
+        let autoInterval = null;
+        let isPaused = false;
+        const container = document.getElementById('gradientTestContainer');
+        const startBtn = document.getElementById('startGradientTestBtn');
+        function showGradient(index) {
+            gradientArea.style.background = gradients[index];
         }
-
-        // Initial state
-        changeGradient();
-
-        gradientArea.addEventListener('click', changeGradient);
-
+        function nextGradient() {
+            currentIndex = (currentIndex + 1) % gradients.length;
+            showGradient(currentIndex);
+        }
+        function prevGradient() {
+            currentIndex = (currentIndex - 1 + gradients.length) % gradients.length;
+            showGradient(currentIndex);
+        }
+        function startAuto() {
+            if (autoInterval) clearInterval(autoInterval);
+            autoInterval = setInterval(() => {
+                if (!isPaused) nextGradient();
+            }, 5000);
+        }
+        function stopAuto() {
+            if (autoInterval) clearInterval(autoInterval);
+            autoInterval = null;
+        }
+        function startTest() {
+            container.style.display = 'none';
+            gradientArea.style.display = 'block';
+            currentIndex = 0;
+            showGradient(currentIndex);
+            isPaused = false;
+            startAuto();
+        }
+        function endTest() {
+            gradientArea.style.display = 'none';
+            container.style.display = 'block';
+            stopAuto();
+        }
+        if (startBtn) startBtn.addEventListener('click', startTest);
+        if (gradientArea) gradientArea.addEventListener('click', nextGradient);
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                window.location.href = 'dashboard.html';
+            if (gradientArea.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    endTest();
+                } else if (event.key === 'ArrowRight') {
+                    nextGradient();
+                } else if (event.key === 'ArrowLeft') {
+                    prevGradient();
+                } else if (event.key === ' ') {
+                    isPaused = !isPaused;
+                }
             }
         });
     </script>

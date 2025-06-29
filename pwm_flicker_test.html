@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5XCPZKJJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103117485, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103117485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>PWM Flicker Test - Free Online Monitor Flicker Detection</title>
+    <meta name="description" content="Free online PWM flicker test tool for monitors. Test for PWM flicker using rapid black and white flashing. Professional flicker testing with smartphone camera detection.">
+    <meta name="keywords" content="PWM flicker test, monitor flicker test, display flicker test, PWM test, flicker detection, monitor PWM test, screen flicker test">
+    <meta name="author" content="Monitor Test Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maksim4351.github.io/test/pwm_flicker_test.html">
+    <meta property="og:title" content="PWM Flicker Test - Free Online Monitor Flicker Detection">
+    <meta property="og:description" content="Professional PWM flicker test tool for monitors. Test for flicker using rapid flashing and smartphone camera detection.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maksim4351.github.io/test/pwm_flicker_test.html">
+    
+    <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "PWM Flicker Test",
+        "description": "Professional tool for testing PWM flicker on monitors",
+        "url": "https://maksim4351.github.io/test/pwm_flicker_test.html",
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "PWM Flicker Test Tool",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser"
+        }
+    }
+    </script>
+    
+    <!-- HowTo Microdata -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Test for PWM Flicker",
+        "description": "Step-by-step guide to test your monitor for PWM flicker",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Start the test",
+                "text": "Click the 'Start Test' button to begin the PWM flicker test."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Observe the flashing",
+                "text": "The screen will rapidly flash between black and white colors."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Use smartphone camera",
+                "text": "Point your smartphone camera at the screen to check for flicker bands that may not be visible to the naked eye."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Check for flicker",
+                "text": "If you see flicker bands through the camera or experience eye strain, your monitor may have PWM flicker issues."
+            }
+        ]
+    }
+    </script>
+    <script src="translations.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XCPZKJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="test-container" id="pwmFlickerTestContainer">
+        <div id="startScreen">
+            <h1 id="pwmFlickerTestTitle">PWM/Flicker Test</h1>
+            <p id="pwmFlickerTestDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
+                Test your display for PWM flicker.<br>
+                The screen will rapidly flash black and white. Use a smartphone camera to check for flicker bands.<br>
+                Click <b>Start Test</b> to begin. Press <b>Back to Dashboard</b> to return.
+            </p>
+            <button id="startPwmFlickerTestBtn" class="btn">Start Test</button>
+            <a href="index.html" class="btn" style="margin-top: 16px; display: inline-block;">Back to Dashboard</a>
+        </div>
+        <div id="pwmFlickerTestArea" style="display:none; width:100vw; height:100vh; position:fixed; left:0; top:0; background:#111; z-index:1000;">
+            <canvas id="pwmFlickerCanvas" style="width:100vw; height:100vh; display:block;"></canvas>
+            <div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:20px;z-index:1100;">
+                <button id="exitBtn" class="btn">Exit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Apply translations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = detectLanguage();
+            applyTranslations(currentLang);
+        });
+
+        const startScreen = document.getElementById('startScreen');
+        const startTestBtn = document.getElementById('startPwmFlickerTestBtn');
+        const pwmFlickerTestArea = document.getElementById('pwmFlickerTestArea');
+        const pwmFlickerCanvas = document.getElementById('pwmFlickerCanvas');
+        const exitBtn = document.getElementById('exitBtn');
+        let ctx, animId = null, frame = 0;
+        function resizeCanvas() {
+            pwmFlickerCanvas.width = window.innerWidth;
+            pwmFlickerCanvas.height = window.innerHeight;
+        }
+        function drawFlicker() {
+            ctx = pwmFlickerCanvas.getContext('2d');
+            ctx.fillStyle = (frame % 2 === 0) ? '#fff' : '#000';
+            ctx.fillRect(0,0,pwmFlickerCanvas.width,pwmFlickerCanvas.height);
+            frame++;
+            animId = requestAnimationFrame(drawFlicker);
+        }
+        startTestBtn.onclick = () => {
+            startScreen.style.display = 'none';
+            pwmFlickerTestArea.style.display = 'block';
+            resizeCanvas();
+            frame = 0;
+            drawFlicker();
+        };
+        exitBtn.onclick = () => {
+            pwmFlickerTestArea.style.display = 'none';
+            startScreen.style.display = 'block';
+            if (animId) cancelAnimationFrame(animId);
+        };
+        window.addEventListener('resize', resizeCanvas);
+    </script>
+</body>
+</html> 
