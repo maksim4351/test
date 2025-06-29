@@ -45,7 +45,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://maksim4351.github.io/test/color_test.html">
     
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=2024-06-09-1">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -96,6 +96,17 @@
             }
         ]
     }
+    </script>
+    <script src="translations.js?v=2024-06-09-1"></script>
+    <script>
+    (function() {
+        const CURRENT_VERSION = '2024-06-09-1';
+        const VERSION_KEY = 'site_version';
+        if (localStorage.getItem(VERSION_KEY) !== CURRENT_VERSION) {
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+            window.location.reload(true);
+        }
+    })();
     </script>
 </head>
 <body>
@@ -153,7 +164,6 @@
         <div style="font-size: 12px;">Site automatically translated to your language</div>
         <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">×</button>
     </div>
-    <script src="translations.js?v=1.0"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const languageSelect = document.getElementById('languageSelect');

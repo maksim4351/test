@@ -45,7 +45,7 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://maksim4351.github.io/test/view_angle.html">
     
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=2024-06-09-1">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -97,7 +97,17 @@
         ]
     }
     </script>
-    <script src="translations.js"></script>
+    <script src="translations.js?v=2024-06-09-1"></script>
+    <script>
+    (function() {
+        const CURRENT_VERSION = '2024-06-09-1';
+        const VERSION_KEY = 'site_version';
+        if (localStorage.getItem(VERSION_KEY) !== CURRENT_VERSION) {
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+            window.location.reload(true);
+        }
+    })();
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
