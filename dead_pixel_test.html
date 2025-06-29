@@ -73,43 +73,88 @@
     <div class="test-container">
         <h1 id="deadPixelTitle">Dead Pixel Test</h1>
         <p id="deadPixelDescription" style="text-align:center; max-width:600px; margin:0 auto 20px;">
-            Test for dead, stuck, or hot pixels on your monitor.<br>
-            Click <b>Start Test</b> to begin. Use arrow keys or click to cycle colors.<br>
-            Use <b>Dynamic Line</b> to run a moving line for additional pixel check.<br>
-            Press <b>Back to Dashboard</b> to return to the main menu.
+            Check your monitor for dead, stuck, or hot pixels.
         </p>
         <div class="test-info">
-            <h2 id="deadPixelHowTo">How to Use:</h2>
+            <h2 id="deadPixelHowTo">How to use:</h2>
             <ul id="deadPixelHowToList">
-                <li id="deadPixelHowTo1">Click "Start Test" to begin pixel detection</li>
-                <li id="deadPixelHowTo2">Look for any pixels that don't match the background color</li>
-                <li id="deadPixelHowTo3">Click on any defective pixels to mark them</li>
-                <li id="deadPixelHowTo4">Use arrow keys or click to navigate</li>
-                <li id="deadPixelHowTo5">Test will cycle through different colors</li>
+                <li>Click <b>Start Test</b> to begin. Use arrow keys or click to change the background color.</li>
+                <li>Carefully look for pixels that differ from the background. Click on a defective pixel to mark it.</li>
+                <li>For dynamic testing, click <b>Dynamic Line</b>:
+                    <ul>
+                        <li>Adjust the line color, background, thickness, speed, and movement mode.</li>
+                        <li>Enable auto color for automatic line color change.</li>
+                        <li>You can drag the Dynamic Line menu by any free area to check pixels underneath.</li>
+                    </ul>
+                </li>
+                <li>Click <b>Back to Dashboard</b> to return to the main menu.</li>
             </ul>
         </div>
         <div class="controls">
             <button id="startBtn" class="btn">Start Test</button>
             <button id="startLineBtn" class="btn">Dynamic Line</button>
             <button id="stopLineBtn" class="btn" style="display:none;">Stop Line</button>
+            <button id="resetMarkersBtn">Reset Markers</button>
             <a id="backToDashboard" href="index.html" class="btn">Back to Dashboard</a>
         </div>
         
-        <div id="testArea" class="test-area" style="display: none;">
-            <div id="pixelGrid"></div>
-            <div class="test-status">
-                <p>Current Color: <span id="currentColor">-</span></p>
-                <p>Defective Pixels Found: <span id="defectiveCount">0</span></p>
-                <p>Progress: <span id="progress">0%</span></p>
-            </div>
-        </div>
+        <div id="test-area" class="test-area" style="display: none;"></div>
         <div id="dynamicLineArea" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; z-index:1000; background:#000;">
             <canvas id="dynamicLineCanvas" style="display:block; width:100vw; height:100vh;"></canvas>
+        </div>
+        <div id="dynamicLineControls">
+            <div>
+                <label for="lineColorSelect">Line Color:</label>
+                <select id="lineColorSelect">
+                    <option value="#fff">White</option>
+                    <option value="#f00">Red</option>
+                    <option value="#0f0">Green</option>
+                    <option value="#00f">Blue</option>
+                    <option value="#ff0">Yellow</option>
+                    <option value="#0ff">Cyan</option>
+                    <option value="#f0f">Magenta</option>
+                    <option value="#000">Black</option>
+                </select>
+            </div>
+            <div>
+                <label for="bgColorSelect">Background:</label>
+                <select id="bgColorSelect">
+                    <option value="#000">Black</option>
+                    <option value="#fff">White</option>
+                    <option value="#888">Gray</option>
+                    <option value="#f00">Red</option>
+                    <option value="#0f0">Green</option>
+                    <option value="#00f">Blue</option>
+                </select>
+            </div>
+            <div>
+                <label for="lineWidthRange">Line Width:</label>
+                <input type="range" id="lineWidthRange" min="1" max="20" value="3">
+                <span id="lineWidthValue">3</span> px
+            </div>
+            <div>
+                <label for="lineSpeedRange">Speed:</label>
+                <input type="range" id="lineSpeedRange" min="1" max="40" value="6">
+                <span id="lineSpeedValue">6</span> px/frame
+            </div>
+            <div>
+                <label for="moveModeSelect">Move Mode:</label>
+                <select id="moveModeSelect">
+                    <option value="horizontal">Horizontal</option>
+                    <option value="vertical">Vertical</option>
+                    <option value="diagonal">Diagonal</option>
+                </select>
+            </div>
+            <div>
+                <label for="autoColorSwitch">Auto Color:</label>
+                <input type="checkbox" id="autoColorSwitch">
+            </div>
+            <button id="closeDynamicLineBtn">Close</button>
         </div>
     </div>
 
     <!-- Language Switcher -->
-    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.9); padding: 12px; border-radius: 10px; border: 1px solid #555;">
+    <div style="display:none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.9); padding: 12px; border-radius: 10px; border: 1px solid #555;">
         <label for="languageSelect" style="color: white; font-size: 12px; display: block; margin-bottom: 5px;">🌍 Language:</label>
         <select id="languageSelect" style="background: #333; color: white; border: 1px solid #555; padding: 8px; border-radius: 6px; font-size: 14px; min-width: 120px;">
             <option value="en">🇺🇸 English</option>
@@ -135,91 +180,203 @@
         </select>
     </div>
     <!-- Auto-translation notification -->
-    <div id="autoTranslationNotice" style="position: fixed; top: 80px; right: 20px; z-index: 999; background: rgba(76, 175, 80, 0.9); color: white; padding: 12px; border-radius: 8px; font-size: 14px; max-width: 250px; display: none; border: 1px solid #4CAF50;">
+    <div id="autoTranslationNotice" style="display:none; position: fixed; top: 80px; right: 20px; z-index: 999; background: rgba(76, 175, 80, 0.9); color: white; padding: 12px; border-radius: 8px; font-size: 14px; max-width: 250px; border: 1px solid #4CAF50;">
         <div style="font-weight: bold; margin-bottom: 5px;">🌍 Auto-translated</div>
         <div style="font-size: 12px;">Site automatically translated to your language</div>
         <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 5px; right: 5px; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">×</button>
     </div>
-    <script src="translations.js?v=1.0"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const testArea = document.getElementById('test-area');
-        const colors = ['#ffffff', '#000000', '#ff0000', '#00ff00', '#0000ff'];
-        let currentIndex = 0;
-        function changeColor() {
-            testArea.style.backgroundColor = colors[currentIndex];
-            currentIndex = (currentIndex + 1) % colors.length;
-        }
-        // Initial state
-        changeColor();
-        if (testArea) testArea.addEventListener('click', changeColor);
-        // Кнопка Start Test
         const startBtn = document.getElementById('startBtn');
-        if (startBtn && testArea) {
-            startBtn.addEventListener('click', function() {
-                testArea.style.display = 'block';
-            });
+        const resetMarkersBtn = document.getElementById('resetMarkersBtn');
+        const colors = [
+            {name: 'White', value: '#ffffff'},
+            {name: 'Black', value: '#000000'},
+            {name: 'Red', value: '#ff0000'},
+            {name: 'Green', value: '#00ff00'},
+            {name: 'Blue', value: '#0000ff'},
+            {name: 'Cyan', value: '#00ffff'},
+            {name: 'Magenta', value: '#ff00ff'},
+            {name: 'Yellow', value: '#ffff00'}
+        ];
+        let currentIndex = 0;
+        let markers = [];
+        function setColor(index) {
+            testArea.style.background = colors[index].value;
+            testArea.setAttribute('data-color', colors[index].name);
         }
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                window.location.href = 'index.html';
+        function showTestArea() {
+            testArea.style.display = 'block';
+            testArea.classList.add('fullscreen');
+            setColor(currentIndex);
+            resetMarkersBtn.style.display = 'inline-block';
+            document.body.style.overflow = 'hidden';
+            if (testArea.requestFullscreen) testArea.requestFullscreen();
+        }
+        function hideTestArea() {
+            testArea.style.display = 'none';
+            testArea.classList.remove('fullscreen');
+            resetMarkersBtn.style.display = 'none';
+            document.body.style.overflow = '';
+            removeAllMarkers();
+            if (document.fullscreenElement) document.exitFullscreen();
+        }
+        function nextColor() {
+            currentIndex = (currentIndex + 1) % colors.length;
+            setColor(currentIndex);
+        }
+        function prevColor() {
+            currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+            setColor(currentIndex);
+        }
+        function addMarker(x, y) {
+            const marker = document.createElement('div');
+            marker.className = 'pixel-marker';
+            marker.style.left = x + 'px';
+            marker.style.top = y + 'px';
+            testArea.appendChild(marker);
+            markers.push(marker);
+        }
+        function removeAllMarkers() {
+            markers.forEach(m => m.remove());
+            markers = [];
+        }
+        startBtn.addEventListener('click', function() {
+            showTestArea();
+        });
+        resetMarkersBtn.addEventListener('click', function() {
+            removeAllMarkers();
+        });
+        testArea.addEventListener('click', function(e) {
+            // Не ставим маркер если клик по кнопке reset
+            if (e.target === resetMarkersBtn) return;
+            addMarker(e.clientX, e.clientY);
+        });
+        document.addEventListener('keydown', function(e) {
+            if (testArea.style.display === 'block') {
+                if (e.key === 'ArrowRight') nextColor();
+                else if (e.key === 'ArrowLeft') prevColor();
+                else if (e.key === 'Escape') hideTestArea();
+                else if (e.key === ' ') nextColor();
             }
         });
+        // Выход из полноэкранного режима — скрыть тест
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement && testArea.style.display === 'block') {
+                hideTestArea();
+            }
+        });
+        
+
         // === Динамическая линия ===
         const startLineBtn = document.getElementById('startLineBtn');
         const stopLineBtn = document.getElementById('stopLineBtn');
         const dynamicLineArea = document.getElementById('dynamicLineArea');
         const dynamicLineCanvas = document.getElementById('dynamicLineCanvas');
+        const dynamicLineControls = document.getElementById('dynamicLineControls');
+        const lineColorSelect = document.getElementById('lineColorSelect');
+        const bgColorSelect = document.getElementById('bgColorSelect');
+        const lineWidthRange = document.getElementById('lineWidthRange');
+        const lineWidthValue = document.getElementById('lineWidthValue');
+        const moveModeSelect = document.getElementById('moveModeSelect');
+        const autoColorSwitch = document.getElementById('autoColorSwitch');
+        const closeDynamicLineBtn = document.getElementById('closeDynamicLineBtn');
+        const lineSpeedRange = document.getElementById('lineSpeedRange');
+        const lineSpeedValue = document.getElementById('lineSpeedValue');
         let lineAnimationId = null;
         let linePos = 0;
-        let lineSpeed = 3; // px per frame
+        let lineSpeed = parseInt(lineSpeedRange.value);
+        let moveMode = 'horizontal';
+        let autoColor = false;
+        let autoColorTimer = null;
+        let currentLineColor = lineColorSelect.value;
+        let currentBgColor = bgColorSelect.value;
+        let currentLineWidth = parseInt(lineWidthRange.value);
         function resizeCanvas() {
-            if (!dynamicLineCanvas) return;
             dynamicLineCanvas.width = window.innerWidth;
             dynamicLineCanvas.height = window.innerHeight;
         }
         function drawMovingLine() {
             const ctx = dynamicLineCanvas.getContext('2d');
             ctx.clearRect(0, 0, dynamicLineCanvas.width, dynamicLineCanvas.height);
-            ctx.strokeStyle = '#fff';
-            ctx.lineWidth = 3;
+            ctx.fillStyle = currentBgColor;
+            ctx.fillRect(0, 0, dynamicLineCanvas.width, dynamicLineCanvas.height);
+            ctx.strokeStyle = currentLineColor;
+            ctx.lineWidth = currentLineWidth;
             ctx.beginPath();
-            ctx.moveTo(0, 0 + linePos);
-            ctx.lineTo(0 + linePos, 0);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(linePos, linePos);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(dynamicLineCanvas.width, 0);
-            ctx.lineTo(dynamicLineCanvas.width - linePos, linePos);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0, dynamicLineCanvas.height);
-            ctx.lineTo(linePos, dynamicLineCanvas.height - linePos);
+            if (moveMode === 'horizontal') {
+                ctx.moveTo(0, linePos);
+                ctx.lineTo(dynamicLineCanvas.width, linePos);
+            } else if (moveMode === 'vertical') {
+                ctx.moveTo(linePos, 0);
+                ctx.lineTo(linePos, dynamicLineCanvas.height);
+            } else if (moveMode === 'diagonal') {
+                ctx.moveTo(0, linePos);
+                ctx.lineTo(linePos, 0);
+            }
             ctx.stroke();
             linePos += lineSpeed;
-            if (linePos < Math.max(dynamicLineCanvas.width, dynamicLineCanvas.height)) {
-                lineAnimationId = requestAnimationFrame(drawMovingLine);
-            } else {
-                stopDynamicLine();
-            }
+            if (moveMode === 'horizontal' && linePos > dynamicLineCanvas.height) linePos = 0;
+            if (moveMode === 'vertical' && linePos > dynamicLineCanvas.width) linePos = 0;
+            if (moveMode === 'diagonal' && linePos > Math.max(dynamicLineCanvas.width, dynamicLineCanvas.height)) linePos = 0;
+            lineAnimationId = requestAnimationFrame(drawMovingLine);
         }
         function startDynamicLine() {
             resizeCanvas();
             linePos = 0;
             dynamicLineArea.style.display = 'block';
+            dynamicLineControls.style.display = 'block';
             if (startLineBtn) startLineBtn.style.display = 'none';
             if (stopLineBtn) stopLineBtn.style.display = 'inline-block';
-            lineAnimationId = requestAnimationFrame(drawMovingLine);
+            drawMovingLine();
+            if (autoColorSwitch.checked) startAutoColor();
         }
         function stopDynamicLine() {
             if (lineAnimationId) cancelAnimationFrame(lineAnimationId);
             dynamicLineArea.style.display = 'none';
+            dynamicLineControls.style.display = 'none';
             if (startLineBtn) startLineBtn.style.display = 'inline-block';
             if (stopLineBtn) stopLineBtn.style.display = 'none';
+            stopAutoColor();
         }
+        function startAutoColor() {
+            stopAutoColor();
+            autoColorTimer = setInterval(() => {
+                const options = Array.from(lineColorSelect.options);
+                let idx = options.findIndex(opt => opt.value === currentLineColor);
+                idx = (idx + 1) % options.length;
+                currentLineColor = options[idx].value;
+                lineColorSelect.value = currentLineColor;
+            }, 1200);
+        }
+        function stopAutoColor() {
+            if (autoColorTimer) clearInterval(autoColorTimer);
+            autoColorTimer = null;
+        }
+        lineColorSelect.addEventListener('change', function() {
+            currentLineColor = this.value;
+        });
+        bgColorSelect.addEventListener('change', function() {
+            currentBgColor = this.value;
+        });
+        lineWidthRange.addEventListener('input', function() {
+            currentLineWidth = parseInt(this.value);
+            lineWidthValue.textContent = this.value;
+        });
+        moveModeSelect.addEventListener('change', function() {
+            moveMode = this.value;
+        });
+        autoColorSwitch.addEventListener('change', function() {
+            autoColor = this.checked;
+            if (autoColor) startAutoColor();
+            else stopAutoColor();
+        });
+        lineSpeedRange.addEventListener('input', function() {
+            lineSpeed = parseInt(this.value);
+            lineSpeedValue.textContent = this.value;
+        });
+        closeDynamicLineBtn.addEventListener('click', stopDynamicLine);
         if (startLineBtn) startLineBtn.addEventListener('click', startDynamicLine);
         if (stopLineBtn) stopLineBtn.addEventListener('click', stopDynamicLine);
         window.addEventListener('resize', resizeCanvas);
@@ -229,40 +386,92 @@
                 stopDynamicLine();
             }
         });
-        const languageSelect = document.getElementById('languageSelect');
-        const currentLang = detectLanguage();
-        languageSelect.value = currentLang;
-        if (currentLang !== 'en') {
-            const notice = document.getElementById('autoTranslationNotice');
-            notice.style.display = 'block';
-            setTimeout(() => { notice.style.display = 'none'; }, 5000);
-        }
-        languageSelect.addEventListener('change', function() {
-            switchLanguage(this.value);
+        // === Перетаскивание меню мышкой ===
+        let dragMenu = false, dragOffsetX = 0, dragOffsetY = 0;
+        dynamicLineControls.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+            dragMenu = true;
+            dragOffsetX = e.clientX - dynamicLineControls.getBoundingClientRect().left;
+            dragOffsetY = e.clientY - dynamicLineControls.getBoundingClientRect().top;
+            document.body.style.userSelect = 'none';
         });
-        applyTranslations(currentLang);
+        document.addEventListener('mousemove', function(e) {
+            if (!dragMenu) return;
+            dynamicLineControls.style.left = (e.clientX - dragOffsetX) + 'px';
+            dynamicLineControls.style.top = (e.clientY - dragOffsetY) + 'px';
+            dynamicLineControls.style.right = 'auto';
+            dynamicLineControls.style.bottom = 'auto';
+        });
+        document.addEventListener('mouseup', function() {
+            dragMenu = false;
+            document.body.style.userSelect = '';
+        });
     });
     </script>
 </body>
 <style>
     body { margin: 0; overflow: hidden; }
-    .instructions-overlay {
+    .test-container { z-index: 10; }
+    .pixel-marker {
         position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-align: center;
-        pointer-events: none; /* Allows clicks to go through to the test area */
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
+        width: 18px;
+        height: 18px;
+        background: rgba(255,0,0,0.7);
+        border-radius: 50%;
+        border: 2px solid #fff;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 1001;
     }
-    #test-area:active + .instructions-overlay,
-    #test-area:focus + .instructions-overlay {
-        opacity: 0;
+    #test-area.fullscreen {
+        position: fixed;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        z-index: 1000;
+        cursor: crosshair;
+    }
+    #resetMarkersBtn {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        z-index: 1100;
+        background: #222;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 8px;
+        padding: 8px 18px;
+        font-size: 16px;
+        cursor: pointer;
+        display: none;
+    }
+    #dynamicLineControls {
+        position: fixed;
+        top: 32px;
+        right: 32px;
+        z-index: 2000;
+        background: rgba(0,0,0,0.85);
+        color: #fff;
+        border-radius: 12px;
+        padding: 18px 22px 12px 22px;
+        box-shadow: 0 4px 24px #0005;
+        display: none;
+    }
+    #dynamicLineControls label {
+        font-size: 15px;
+        margin-right: 8px;
+    }
+    #dynamicLineControls select, #dynamicLineControls input[type=range] {
+        margin-bottom: 10px;
+    }
+    #dynamicLineControls button {
+        margin-top: 8px;
+        margin-right: 8px;
+        background: #222;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        padding: 6px 14px;
+        font-size: 15px;
+        cursor: pointer;
     }
 </style>
 </html> 
