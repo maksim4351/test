@@ -129,7 +129,7 @@
                     const message = document.getElementById('feedbackText').value.trim();
                     const statusDiv = document.getElementById('feedbackStatus');
                     
-                    // Валидация
+                    // Validation
                     if (!email || !message) {
                         showStatus('Please fill in all required fields.', 'error');
                         return;
@@ -140,15 +140,15 @@
                         return;
                     }
                     
-                    // Получение информации об экране
+                    // Get screen information
                     const screenInfo = getScreenInfoText();
                     
-                    // Создание mailto ссылки
+                    // Create mailto link
                     const subject = encodeURIComponent('Feedback from Screen Test Website');
                     const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}\n\nScreen Information:\n${screenInfo}`);
                     const mailtoLink = `mailto:mst14459@gmail.com?subject=${subject}&body=${body}`;
                     
-                    // Открытие почтового клиента
+                    // Open email client
                     window.open(mailtoLink);
                     
                     showStatus('Email client opened. Please send the email manually.', 'success');

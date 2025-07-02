@@ -79,18 +79,7 @@
 
 ## 🔧 Installation & Setup
 
-### **Local Development**
-```bash
-# Clone the repository
-git clone https://github.com/your-username/monitor-test-tool.git
 
-# Navigate to project directory
-cd monitor-test-tool
-
-# Open index.html in your browser
-# Or use a local server:
-python -m http.server 8000
-```
 
 ### **Deployment**
 1. Upload files to your web server
@@ -150,7 +139,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📈 Project Status
 
 - **Version**: 1.2.0
-- **Last Updated**: January 2024
+- **Last Updated**: May 2025
 - **Active Development**: Yes
 - **Maintenance**: Regular updates and improvements
 

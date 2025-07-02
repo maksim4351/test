@@ -249,7 +249,7 @@
             removeAllMarkers();
         });
         testArea.addEventListener('click', function(e) {
-            // Не ставим маркер если клик по кнопке reset
+            // Don't place marker if clicking reset button
             if (e.target === resetMarkersBtn) return;
             addMarker(e.clientX, e.clientY);
         });
@@ -261,7 +261,7 @@
                 else if (e.key === ' ') nextColor();
             }
         });
-        // Выход из полноэкранного режима — скрыть тест
+        // Exit fullscreen mode - hide test
         document.addEventListener('fullscreenchange', function() {
             if (!document.fullscreenElement && testArea.style.display === 'block') {
                 hideTestArea();
@@ -269,7 +269,7 @@
         });
         
 
-        // === Динамическая линия ===
+        // === Dynamic Line ===
         const startLineBtn = document.getElementById('startLineBtn');
         const stopLineBtn = document.getElementById('stopLineBtn');
         const dynamicLineArea = document.getElementById('dynamicLineArea');
@@ -386,7 +386,7 @@
                 stopDynamicLine();
             }
         });
-        // === Перетаскивание меню мышкой ===
+        // === Menu dragging with mouse ===
         let dragMenu = false, dragOffsetX = 0, dragOffsetY = 0;
         dynamicLineControls.addEventListener('mousedown', function(e) {
             if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;

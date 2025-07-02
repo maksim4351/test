@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Настройка multer для загрузки файлов
+// Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const uploadDir = 'uploads/';
@@ -29,7 +29,7 @@ const upload = multer({
         fileSize: 5 * 1024 * 1024 // 5MB
     },
     fileFilter: function (req, file, cb) {
-        // Разрешенные типы файлов
+        // Allowed file types
         const allowedTypes = /jpeg|jpg|png|gif|pdf|txt|doc|docx/;
         const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = allowedTypes.test(file.mimetype);
@@ -46,30 +46,30 @@ const upload = multer({
 app.use(express.json());
 app.use(express.static('.')); // Serve static files from current directory
 
-// Настройка транспорта для отправки email
+// Configure transport for sending email
 const transporter = nodemailer.createTransporter({
     service: 'gmail',
     auth: {
-        user: 'mst14459@gmail.com', // Ваш email
-        pass: process.env.EMAIL_PASSWORD // Пароль от приложения (не от аккаунта!)
+        user: 'mst14459@gmail.com', // Your email
+        pass: process.env.EMAIL_PASSWORD // App password (not account password!)
     }
 });
 
-// API endpoint для обработки обратной связи
+// API endpoint for processing feedback
 app.post('/api/feedback', upload.single('attachment'), async (req, res) => {
     try {
         const { email, message, screenInfo } = req.body;
         const attachment = req.file;
 
-        // Валидация
+        // Validation
         if (!email || !message) {
             return res.status(400).json({ success: false, error: 'Email and message are required' });
         }
 
-        // Настройка email
+        // Email configuration
         const mailOptions = {
             from: 'mst14459@gmail.com',
-            to: 'mst14459@gmail.com', // Ваш email для получения писем
+            to: 'mst14459@gmail.com', // Your email for receiving letters
             subject: `Feedback from ${email}`,
             html: `
                 <h2>New Feedback Received</h2>
@@ -85,10 +85,10 @@ app.post('/api/feedback', upload.single('attachment'), async (req, res) => {
             }] : []
         };
 
-        // Отправка email
+        // Send email
         await transporter.sendMail(mailOptions);
 
-        // Отправка подтверждения пользователю
+        // Send confirmation to user
         const userMailOptions = {
             from: 'mst14459@gmail.com',
             to: email,
@@ -104,7 +104,7 @@ app.post('/api/feedback', upload.single('attachment'), async (req, res) => {
 
         await transporter.sendMail(userMailOptions);
 
-        // Удаление временного файла
+        // Delete temporary file
         if (attachment && fs.existsSync(attachment.path)) {
             fs.unlinkSync(attachment.path);
         }
@@ -114,7 +114,7 @@ app.post('/api/feedback', upload.single('attachment'), async (req, res) => {
     } catch (error) {
         console.error('Error sending feedback:', error);
         
-        // Удаление временного файла в случае ошибки
+        // Delete temporary file in case of error
         if (req.file && fs.existsSync(req.file.path)) {
             fs.unlinkSync(req.file.path);
         }
@@ -123,7 +123,7 @@ app.post('/api/feedback', upload.single('attachment'), async (req, res) => {
     }
 });
 
-// Обработка ошибок multer
+// Handle multer errors
 app.use((error, req, res, next) => {
     if (error instanceof multer.MulterError) {
         if (error.code === 'LIMIT_FILE_SIZE') {

@@ -266,7 +266,7 @@
                 renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Unknown';
             }
             document.getElementById('gpu-renderer').textContent = renderer;
-            // Кнопка и результаты
+            // Button and results
             const checkBtn = document.getElementById('check-gpu-btn');
             const resultsBlock = document.getElementById('gpu-performance-results');
             if (renderer === 'No data' || renderer === 'Unknown') {
@@ -278,7 +278,7 @@
                 checkBtn.style.background = '';
                 checkBtn.style.color = '';
                 checkBtn.textContent = 'Check Performance';
-                // Проверяем, есть ли результаты
+                // Check if there are results
                 const results = sessionStorage.getItem('gpuCheckResults');
                 if (results) {
                     const r = JSON.parse(results);

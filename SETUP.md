@@ -1,85 +1,67 @@
-# Настройка сервера обратной связи
+# Feedback Server Setup
 
-## Установка зависимостей
+## Installing Dependencies
 
-1. Установите Node.js (если еще не установлен): https://nodejs.org/
-2. Откройте терминал в папке проекта
-3. Выполните команду:
+1. Install Node.js (if not already installed): https://nodejs.org/
+2. Open terminal in the project folder
+3. Run the command:
 ```bash
 npm install
 ```
 
-## Настройка Gmail для отправки писем
+## Setting up Gmail for Email Sending
 
-### Шаг 1: Включение двухфакторной аутентификации
-1. Перейдите в настройки Google аккаунта
-2. Включите двухфакторную аутентификацию
+### Step 1: Enable Two-Factor Authentication
+1. Go to Google account settings
+2. Enable two-factor authentication
 
-### Шаг 2: Создание пароля приложения
-1. В настройках безопасности найдите "Пароли приложений"
-2. Создайте новый пароль для приложения
-3. Выберите "Другое (пользовательское имя)" и назовите его "Screen Test Website"
-4. Скопируйте сгенерированный пароль (16 символов)
+### Step 2: Create App Password
+1. In security settings, find "App passwords"
+2. Create a new app password
+3. Select "Other (custom name)" and name it "Screen Test Website"
+4. Copy the generated password (16 characters)
 
-### Шаг 3: Настройка переменной окружения
-1. Скопируйте файл `env.example` в `.env`:
+### Step 3: Configure Environment Variable
+1. Copy `env.example` to `.env`:
 ```bash
 cp env.example .env
 ```
-2. Откройте файл `.env` и замените `your_app_password_here` на ваш пароль приложения:
+2. Open `.env` file and replace `your_app_password_here` with your app password:
 ```
-EMAIL_PASSWORD=ваш_пароль_приложения_здесь
+EMAIL_PASSWORD=your_app_password_here
 ```
 
-## Запуск сервера
+## Starting the Server
 
-### Для разработки:
+### For Development:
 ```bash
 npm run dev
 ```
 
-### Для продакшена:
+### For Production:
 ```bash
 npm start
 ```
 
-Сервер будет доступен по адресу: http://localhost:3000
+Server will be available at: http://localhost:3000
 
-## Безопасность
+## Supported File Types
+- Images: jpg, jpeg, png, gif
+- Documents: pdf, txt, doc, docx
+- Maximum size: 5MB
 
-- Ваш email адрес (mst14459@gmail.com) НЕ будет виден посетителям сайта
-- Письма будут приходить только вам
-- Пользователи получат автоматическое подтверждение на свой email
-- Все файлы автоматически удаляются после отправки
-- Файл `.env` с паролем не попадет в git репозиторий
+## Troubleshooting
 
-## Структура писем
+### "Invalid login" Error
+- Make sure two-factor authentication is enabled
+- Use app password, not account password
+- Check email address correctness
 
-### Письмо вам:
-- Тема: "Feedback from [email пользователя]"
-- Содержит: сообщение пользователя, информацию о его экране, прикрепленный файл (если есть)
+### "File too large" Error
+- Make sure file size doesn't exceed 5MB
+- Compress image or select another file
 
-### Письмо пользователю:
-- Тема: "Thank you for your feedback!"
-- Содержит: подтверждение получения и копию его сообщения
-
-## Поддерживаемые типы файлов
-- Изображения: jpg, jpeg, png, gif
-- Документы: pdf, txt, doc, docx
-- Максимальный размер: 5MB
-
-## Устранение неполадок
-
-### Ошибка "Invalid login"
-- Убедитесь, что включена двухфакторная аутентификация
-- Используйте пароль приложения, а не пароль от аккаунта
-- Проверьте правильность email адреса
-
-### Ошибка "File too large"
-- Убедитесь, что размер файла не превышает 5MB
-- Сожмите изображение или выберите другой файл
-
-### Сервер не запускается
-- Проверьте, что Node.js установлен: `node --version`
-- Убедитесь, что все зависимости установлены: `npm install`
-- Проверьте, что порт 3000 не занят другим приложением 
+### Server won't start
+- Check if Node.js is installed: `node --version`
+- Make sure all dependencies are installed: `npm install`
+- Check if port 3000 is not occupied by another application 
