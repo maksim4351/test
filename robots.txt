@@ -1,11 +1,18 @@
+# Robots.txt for Monitor Test Tool
+# https://maksim4351.github.io/test/
+
 User-agent: *
 Allow: /
 
 # Sitemap location
 Sitemap: https://maksim4351.github.io/test/sitemap.xml
 
-# Allow all pages to be indexed
+# Allow all main pages to be indexed
 Allow: /index.html
+Allow: /dashboard.html
+Allow: /auth.html
+
+# Allow all test pages to be indexed
 Allow: /color_test.html
 Allow: /cluster_test.html
 Allow: /latency_test.html
@@ -13,14 +20,79 @@ Allow: /view_angle.html
 Allow: /dead_pixel_test.html
 Allow: /gradient_test.html
 Allow: /gpu_stress_test.html
+Allow: /touch_test.html
+Allow: /inversion_test.html
+Allow: /image_retention_test.html
+Allow: /response_time_test.html
+Allow: /pwm_flicker_test.html
+Allow: /touch_grid_test.html
 Allow: /screen_info.html
+Allow: /screen_info_simple.html
 
-# Allow CSS and JS files
+# Allow CSS and JS files for proper rendering
 Allow: /style.css
-Allow: /auth.js
+Allow: /translations.js
+Allow: /seo-meta.js
 Allow: /view_angle.js
 Allow: /three.min.js
 
-# Allow images
+# Allow images and media files
+Allow: /favicon.png
+Allow: /favicon2.png
 Allow: /test_image.jpg
-Allow: /high_resolution_image.jpg 
+Allow: /high_resolution_image.jpg
+
+# Allow configuration files
+Allow: /config.json
+Allow: /package.json
+
+# Allow documentation files
+Allow: /README.md
+Allow: /SEO-README.md
+Allow: /GTM-Setup.md
+Allow: /SETUP.md
+Allow: /LICENSE
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: Sogou
+Allow: /
+Crawl-delay: 2
+
+# Block access to sensitive files
+Disallow: /env.example
+Disallow: /.gitignore
+Disallow: /fix_seo.py
+Disallow: /update_seo.py
+Disallow: /server.js
+
+# Block access to temporary and development files
+Disallow: /*.tmp
+Disallow: /*.log
+Disallow: /*.bak
+Disallow: /*.old
+
+# Allow all query parameters for language switching
+Allow: /*?lang=*
+
+# Host directive for canonical domain
+Host: https://maksim4351.github.io 
